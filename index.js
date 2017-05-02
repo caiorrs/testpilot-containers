@@ -59,7 +59,7 @@ const prefService = require("sdk/preferences/service");
 const self = require("sdk/self");
 const { Services }  = require("resource://gre/modules/Services.jsm");
 const ss = require("sdk/simple-storage");
-const study = require("./study");
+const { study } = require("./study");
 const { Style } = require("sdk/stylesheet/style");
 const tabs = require("sdk/tabs");
 const tabsUtils = require("sdk/tabs/utils");
@@ -262,6 +262,7 @@ const ContainerService = {
       });
 
       this.registerBackgroundConnection(api);
+      study.startup(self.loadReason);
     }).catch(() => {
       throw new Error("WebExtension startup failed. Unable to continue.");
     });
